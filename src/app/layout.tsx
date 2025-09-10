@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/contexts/AuthContext";
+import { SettingsProvider } from "@/lib/settings";
+import { ErrorBoundaryWrapper } from "@/components/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Docker Manager",
-  description: "Manage your Docker containers with ease",
+  title: "Docker Manager - Manage Your Containers",
+  description: "A modern web interface for managing Docker containers with real-time monitoring, logs, and control.",
+  keywords: ["Docker", "containers", "management", "monitoring", "logs", "devops"],
+  authors: [{ name: "Docker Manager Team" }],
+  robots: "noindex, nofollow", // Since this is likely for internal use
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -28,9 +37,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <SettingsProvider>
+          <ErrorBoundaryWrapper>
+            {children}
+          </ErrorBoundaryWrapper>
+        </SettingsProvider>
       </body>
     </html>
   );

@@ -39,9 +39,14 @@ This is a Next.js web application that implements the functionality from the Flu
 src/
 ├── app/
 │   ├── layout.tsx          # Root layout with auth provider
-│   ├── page.tsx           # Main container list page
+│   ├── page.tsx           # Home page (redirects to dashboard or login)
+│   ├── dashboard/
+│   │   └── page.tsx       # Main dashboard with container list
 │   ├── login/
 │   │   └── page.tsx       # Login page
+│   ├── auth/
+│   │   └── callback/
+│   │       └── page.tsx   # OAuth callback page
 │   └── container/
 │       └── [id]/
 │           └── page.tsx   # Container detail page
@@ -73,7 +78,7 @@ src/
    Create a `.env.local` file with:
    ```
    NEXT_PUBLIC_BASE_URL=https://felicit.at/dockermanager/api
-   NEXT_PUBLIC_WS_URL=wss://felicit.at/dockermanager/api
+   NEXT_PUBLIC_BASE_WS_URL=wss://felicit.at/dockermanager/api
    GOOGLE_CLIENT_ID=your-google-client-id
    ```
 
@@ -159,6 +164,36 @@ Potential improvements for the application:
 - Code is organized following Next.js best practices
 
 ## Deployment
+
+### Docker Deployment (Recommended for Production)
+
+1. **Set up environment variables**:
+   Copy `.env.example` to `.env` and update the values:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Build and run with Docker Compose**:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Or build and run manually**:
+   ```bash
+   # Build the Docker image
+   docker build -t dockermanager-website .
+
+   # Run the container
+   docker run -p 3000:3000 \
+     -e NEXT_PUBLIC_BASE_URL=https://your-domain.com/api \
+     -e NEXT_PUBLIC_BASE_WS_URL=wss://your-domain.com/api \
+     -e NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id \
+     dockermanager-website
+   ```
+
+4. **Access the application** at `http://localhost:3000`
+
+### Traditional Deployment
 
 The application can be deployed to Vercel, Netlify, or any other platform that supports Next.js:
 

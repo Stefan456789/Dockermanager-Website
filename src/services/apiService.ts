@@ -1,13 +1,17 @@
 import axios, { AxiosInstance } from 'axios';
-import { ContainerInfo } from '@/types';
+import { ContainerInfo, ContainerPort } from '@/types';
 
 class ApiService {
   private axiosInstance: AxiosInstance;
   private token: string | null = null;
+  private baseUrl: string;
+  private baseWsUrl: string;
 
-  constructor() {
+  constructor(baseUrl?: string, baseWsUrl?: string) {
+    this.baseUrl = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || 'https://felicit.at/dockermanager/api';
+    this.baseWsUrl = baseWsUrl || process.env.NEXT_PUBLIC_BASE_WS_URL || 'wss://felicit.at/dockermanager';
     this.axiosInstance = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'https://felicit.at/dockermanager/api',
+      baseURL: this.baseUrl,
       timeout: 10000,
     });
 
@@ -40,10 +44,37 @@ class ApiService {
     this.token = token;
   }
 
+  updateBaseUrl(baseUrl: string) {
+    this.baseUrl = baseUrl;
+    this.axiosInstance.defaults.baseURL = baseUrl;
+  }
+
+  updateBaseWsUrl(baseWsUrl: string) {
+    this.baseWsUrl = baseWsUrl;
+  }
+
+  getBaseUrl(): string {
+    return this.baseUrl;
+  }
+
+  getBaseWsUrl(): string {
+    return this.baseWsUrl;
+  }
+
   async getContainers(): Promise<ContainerInfo[]> {
     try {
       const response = await this.axiosInstance.get('/containers');
-      return response.data.map((item: any) => ({
+      return response.data.map((item: {
+        id: string;
+        name: string;
+        image: string;
+        state: string;
+        status: string;
+        ports?: ContainerPort[];
+        created: string;
+        tty: boolean;
+        openStdin: boolean;
+      }) => ({
         id: item.id,
         name: item.name,
         image: item.image,
@@ -114,8 +145,7 @@ class ApiService {
       return null;
     }
 
-    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'wss://felicit.at/dockermanager/api';
-    const url = `${wsUrl}/logs?containerId=${id}&token=${this.token}`;
+    const url = `${this.baseWsUrl}/logs?containerId=${id}&token=${this.token}`;
 
     try {
       return new WebSocket(url);
@@ -124,6 +154,17 @@ class ApiService {
       return null;
     }
   }
+
+  // Method to update settings from the settings context
+  updateSettings(baseUrl: string, baseWsUrl: string) {
+    this.updateBaseUrl(baseUrl);
+    this.updateBaseWsUrl(baseWsUrl);
+  }
 }
 
 export const apiService = new ApiService();
+
+// Function to update API service settings
+export function updateApiServiceSettings(baseUrl: string, baseWsUrl: string) {
+  apiService.updateSettings(baseUrl, baseWsUrl);
+}
