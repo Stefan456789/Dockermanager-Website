@@ -36,7 +36,6 @@ RUN pnpm install --frozen-lockfile --prod
 
 # Copy the built application from the builder stage
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.ts ./
 
 # Expose the port the app runs on
