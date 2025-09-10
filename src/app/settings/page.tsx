@@ -54,7 +54,7 @@ function SettingsContent() {
       setHasChanges(false);
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus('idle'), 2000);
-    } catch (error) {
+    } catch {
       setSaveStatus('error');
     }
   };
@@ -74,17 +74,6 @@ function SettingsContent() {
     });
     setHasChanges(true);
     setSaveStatus('idle');
-  };
-
-  const getThemeIcon = (theme: string) => {
-    switch (theme) {
-      case 'light':
-        return <Sun className="h-4 w-4" />;
-      case 'dark':
-        return <Moon className="h-4 w-4" />;
-      default:
-        return <Monitor className="h-4 w-4" />;
-    }
   };
 
   return (

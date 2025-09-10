@@ -91,10 +91,6 @@ export default function ContainerList() {
     }
   };
 
-  const handleSignOut = () => {
-    signOut();
-  };
-
   const getStateColor = (state: string) => {
     switch (state) {
       case 'running':
@@ -244,7 +240,7 @@ export default function ContainerList() {
               No containers found
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
-              Get started by creating your first Docker container. Your containers will appear here once they're running.
+              Get started by creating your first Docker container. Your containers will appear here once they&apos;re running.
             </p>
           </div>
         ) : (

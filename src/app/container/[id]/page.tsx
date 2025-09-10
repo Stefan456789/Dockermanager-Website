@@ -143,7 +143,7 @@ function ContainerDetailContent() {
         wsRef.current.close();
       }
     };
-  }, [containerId]); // Only depend on containerId, not the callback functions
+  }, [containerId, fetchContainerDetails, setupWebSocket]);
 
   const handleContainerAction = async (action: 'start' | 'stop' | 'restart') => {
     try {
@@ -219,7 +219,7 @@ function ContainerDetailContent() {
             Container not found
           </h3>
           <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-6">
-            The container you're looking for doesn't exist or has been removed.
+            The container you&apos;re looking for doesn&apos;t exist or has been removed.
           </p>
           <Button onClick={() => router.push('/dashboard')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
             <ArrowLeft className="h-4 w-4 mr-2" />
