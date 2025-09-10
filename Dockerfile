@@ -44,5 +44,5 @@ EXPOSE 3000
 # Set environment to production
 ENV NODE_ENV=production
 
-# Start the application
-CMD ["pnpm", "start"]
+# Start the application with environment variable logging
+CMD ["sh", "-c", "echo 'NEXT_PUBLIC environment variables:' && env | grep NEXT_PUBLIC && echo 'Starting Next.js app...' && pnpm start"]
