@@ -1,8 +1,8 @@
-# Use the official Node.js 18 Alpine image as the base for building
-FROM node:18-alpine AS builder
+# Use the official Node.js 18 image as the base for building
+FROM node:18 AS builder
 
-# Install pnpm
-RUN npm install -g pnpm
+# Enable corepack for pnpm
+RUN corepack enable pnpm
 
 # Set the working directory
 WORKDIR /app
@@ -20,10 +20,10 @@ COPY . .
 RUN pnpm run build
 
 # Production stage
-FROM node:18-alpine AS runner
+FROM node:18 AS runner
 
-# Install pnpm in production stage
-RUN npm install -g pnpm
+# Enable corepack for pnpm
+RUN corepack enable pnpm
 
 # Set the working directory
 WORKDIR /app
