@@ -168,4 +168,3 @@ npm start
 ```
 
 Make sure to set the environment variables in your deployment platform.
-# Dockermanager-Website
