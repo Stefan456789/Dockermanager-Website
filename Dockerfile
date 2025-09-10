@@ -36,9 +36,11 @@ RUN pnpm install --frozen-lockfile --prod
 
 # Copy the built application from the base stage
 COPY --from=base /app/.next ./.next
-COPY --from=base /app/public ./public
 COPY --from=base /app/next.config.ts ./
 COPY --from=base /app/package.json ./
+
+# Copy public directory
+COPY ./public ./public
 
 # Expose the port the app runs on
 EXPOSE 3000
