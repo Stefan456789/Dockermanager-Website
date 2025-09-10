@@ -39,8 +39,8 @@ COPY --from=base /app/.next ./.next
 COPY --from=base /app/next.config.ts ./
 COPY --from=base /app/package.json ./
 
-# Copy public directory
-COPY ./public ./public
+# Create public directory
+RUN mkdir -p ./public
 
 # Expose the port the app runs on
 EXPOSE 3000
