@@ -16,6 +16,9 @@ RUN pnpm install --frozen-lockfile
 # Copy the rest of the application code
 COPY . .
 
+# Copy .env for environment variables
+COPY .env ./
+
 # Build the application
 RUN pnpm run build
 
