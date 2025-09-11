@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/manager',
-  assetPrefix: '/manager',
+  basePath: process.env.BASE_PATH || '/',
+  assetPrefix: process.env.BASE_PATH || '/',
   images: {
     remotePatterns: [
       {

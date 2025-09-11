@@ -19,6 +19,7 @@ import {
   Loader2,
   Send
 } from 'lucide-react';
+import { BASE_PATH } from '../../../lib/constants';
 
 function ContainerDetailContent() {
   const params = useParams();
@@ -221,7 +222,7 @@ function ContainerDetailContent() {
           <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-6">
             The container you&apos;re looking for doesn&apos;t exist or has been removed.
           </p>
-          <Button onClick={() => router.push('/dashboard')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+          <Button onClick={() => router.push(`${BASE_PATH}/dashboard`)} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Containers
           </Button>
@@ -238,7 +239,7 @@ function ContainerDetailContent() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <Button
-                onClick={() => router.push('/dashboard')}
+                onClick={() => router.push(`${BASE_PATH}/dashboard`)}
                 variant="ghost"
                 size="sm"
                 className="hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"

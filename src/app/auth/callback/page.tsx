@@ -2,11 +2,12 @@
 
 import { useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
+import { BASE_PATH } from '@/lib/constants';
 
 export default function AuthCallback() {
   useEffect(() => {
     // Handle OAuth callback - redirect to dashboard
-    window.location.href = '/dashboard';
+    window.location.href = `${BASE_PATH}/dashboard`;
   }, []);
 
   return (

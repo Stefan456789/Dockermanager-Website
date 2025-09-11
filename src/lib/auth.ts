@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { BASE_PATH } from './constants';
 
 export interface User {
   id: string;
@@ -46,7 +47,7 @@ export function useAuth() {
     localStorage.removeItem('user');
     setIsAuthenticated(false);
     setUser(null);
-    router.push('/login');
+    router.push(`${BASE_PATH}/login`);
   };
 
   return {

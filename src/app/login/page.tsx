@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Server } from 'lucide-react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { BASE_PATH } from '@/lib/constants';
 
 
 export default function LoginPage() {
@@ -62,7 +63,7 @@ export default function LoginPage() {
 
       // Handle successful login (store tokens, redirect, etc.)
       console.log('Redirecting to dashboard...');
-      window.location.href = '/dashboard'; // Use window.location for full page reload to ensure auth state is updated
+      window.location.href = `${BASE_PATH}/dashboard`; // Use full path with basePath
     } catch (error) {
       console.error('Login error:', error);
       setError(`Sign in failed: ${error instanceof Error ? error.message : 'Please try again.'}`);

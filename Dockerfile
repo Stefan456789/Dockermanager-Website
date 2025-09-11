@@ -44,8 +44,10 @@ COPY --from=builder /app/next.config.ts ./
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Set environment to production
+# Set environment variables
 ENV NODE_ENV=production
+ENV BASE_PATH=/manager
+ENV NEXT_PUBLIC_BASE_PATH=/manager
 
 # Start the application with environment variable logging
 CMD ["sh", "-c", "echo 'NEXT_PUBLIC environment variables:' && env | grep NEXT_PUBLIC && echo 'Starting Next.js app...' && pnpm start"]
