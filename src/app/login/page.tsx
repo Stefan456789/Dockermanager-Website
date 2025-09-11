@@ -21,7 +21,7 @@ export default function LoginPage() {
 
     try {
       // Send the token to your backend
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://felicit.at/dockermanager/api';
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
       console.log('Sending request to:', `${baseUrl}/auth/google-signin`);
 
       const response = await fetch(`${baseUrl}/auth/google-signin`, {

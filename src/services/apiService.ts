@@ -8,8 +8,8 @@ class ApiService {
   private baseWsUrl: string;
 
   constructor(baseUrl?: string, baseWsUrl?: string) {
-    this.baseUrl = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || 'https://felicit.at/dockermanager/api';
-    this.baseWsUrl = baseWsUrl || process.env.NEXT_PUBLIC_BASE_WS_URL || 'wss://felicit.at/dockermanager';
+    this.baseUrl = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || '';
+    this.baseWsUrl = baseWsUrl || process.env.NEXT_PUBLIC_BASE_WS_URL || '';
     this.axiosInstance = axios.create({
       baseURL: this.baseUrl,
       timeout: 10000,

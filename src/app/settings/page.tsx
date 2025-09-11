@@ -69,8 +69,8 @@ function SettingsContent() {
   const handleResetToDefaults = () => {
     resetSettings();
     setLocalSettings({
-      baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://felicit.at/dockermanager/api',
-      baseWsUrl: process.env.NEXT_PUBLIC_BASE_WS_URL || 'wss://felicit.at/dockermanager',
+      baseUrl: process.env.NEXT_PUBLIC_BASE_URL || '',
+      baseWsUrl: process.env.NEXT_PUBLIC_BASE_WS_URL || '',
       theme: 'system',
     });
     setHasChanges(true);
