@@ -20,7 +20,6 @@ import {
   Moon,
   Monitor
 } from 'lucide-react';
-import { BASE_PATH } from '@/lib/constants';
 
 function SettingsContent() {
   const router = useRouter();
@@ -85,7 +84,7 @@ function SettingsContent() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <Button
-                onClick={() => router.push(`${BASE_PATH}/dashboard`)}
+                onClick={() => router.push(`/dashboard`)}
                 variant="ghost"
                 size="sm"
                 className="hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"

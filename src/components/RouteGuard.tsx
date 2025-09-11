@@ -4,7 +4,6 @@ import { useAuth } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
-import { BASE_PATH } from '@/lib/constants';
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -14,7 +13,7 @@ interface RouteGuardProps {
 
 export function RouteGuard({
   children,
-  redirectTo = `${BASE_PATH}/login`,
+  redirectTo = `/login`,
   requireAuth = true
 }: RouteGuardProps) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -25,7 +24,7 @@ export function RouteGuard({
       if (requireAuth && !isAuthenticated) {
         router.push(redirectTo);
       } else if (!requireAuth && isAuthenticated) {
-        router.push(`${BASE_PATH}/dashboard`);
+        router.push(`/dashboard`);
       }
     }
   }, [isAuthenticated, isLoading, router, requireAuth, redirectTo]);

@@ -12,7 +12,6 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - BASE_PATH=/manager
       - NEXT_PUBLIC_BASE_PATH=/manager
       - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
       - NEXT_PUBLIC_BASE_WS_URL=${NEXT_PUBLIC_BASE_WS_URL}

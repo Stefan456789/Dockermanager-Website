@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { Server, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BASE_PATH } from '@/lib/constants';
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -15,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     if (!isLoading) {
       if (isAuthenticated) {
-        router.push(`${BASE_PATH}/dashboard`);
+        router.push(`/dashboard`);
       }
     }
   }, [isAuthenticated, isLoading, router]);
@@ -70,7 +69,7 @@ export default function Home() {
             Sign in to access your container dashboard and manage your Docker environment with a beautiful, modern interface.
           </p>
           <Button
-            onClick={() => router.push(`${BASE_PATH}/login`)}
+            onClick={() => router.push(`/login`)}
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl text-lg py-6"
             size="lg"
           >

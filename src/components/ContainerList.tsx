@@ -22,7 +22,6 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { BASE_PATH } from '../lib/constants';
 
 export default function ContainerList() {
   const { user, signOut } = useAuth();
@@ -193,7 +192,7 @@ export default function ContainerList() {
                         </button>
                         <button
                           onClick={() => {
-                            router.push(`${BASE_PATH}/settings`);
+                            router.push(`/settings`);
                             setIsDropdownOpen(false);
                           }}
                           className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left"
@@ -315,7 +314,7 @@ export default function ContainerList() {
 
                       {/* Details Button */}
                       <Button
-                        onClick={() => router.push(`${BASE_PATH}/container/${container.id}`)}
+                        onClick={() => router.push(`/container/${container.id}`)}
                         variant="ghost"
                         size="sm"
                         className="hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group/details"
