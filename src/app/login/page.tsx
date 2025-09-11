@@ -2,17 +2,18 @@
 
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Server } from 'lucide-react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { BASE_PATH } from '@/lib/constants';
 
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleGoogleSuccess = async (credentialResponse: { credential?: string }) => {
     console.log('Google auth success:', credentialResponse);
@@ -63,7 +64,7 @@ export default function LoginPage() {
 
       // Handle successful login (store tokens, redirect, etc.)
       console.log('Redirecting to dashboard...');
-      window.location.href = `${BASE_PATH}/dashboard`; // Use full path with basePath
+      router.push('/dashboard'); // Use Next.js router for client-side navigation
     } catch (error) {
       console.error('Login error:', error);
       setError(`Sign in failed: ${error instanceof Error ? error.message : 'Please try again.'}`);
