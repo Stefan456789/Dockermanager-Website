@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
+const basePath = process.env.BASE_PATH || '/';
+const assetPrefix = process.env.BASE_PATH || '/';
+
 const nextConfig = {
-  basePath: process.env.BASE_PATH || '/',
-  assetPrefix: process.env.BASE_PATH || '/',
+  basePath: basePath === '/' ? '' : basePath,
+  assetPrefix: assetPrefix === '/' ? '' : assetPrefix,
   images: {
     remotePatterns: [
       {
